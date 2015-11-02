@@ -27,7 +27,6 @@
     "composable-middleware": "^0.3.0",
     "cookie-parser": "^1.4.0",
     "compression": "^1.6.0",
-    "connect-livereload": "^0.5.3",
     "ejs": "^2.3.4",
     "errorhandler": "^1.4.2",
     "eventsource": "^0.1.6",
