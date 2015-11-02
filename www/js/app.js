@@ -1,14 +1,13 @@
-// Spark_Core App
 angular.module('SparkCore', [
-   'ionic',
-   'SparkCore.auth',
-   'SparkCore.user',
-   'SparkCore.services',
-   'SparkCore.controllers',
-   'tc.chartjs',
-   'MONITOR',
-   "highcharts-ng"
-])
+      'ionic',
+      'SparkCore.services',
+      'SparkCore.controllers',
+      'SparkCore.auth',
+      'SparkCore.user',
+      'tc.chartjs',
+      'MONITOR',
+      'highcharts-ng'
+   ])
    .run(function ($ionicPlatform, $http) {
       $ionicPlatform.ready(function () {
          // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -90,7 +89,7 @@ angular.module('SparkCore', [
                   controller: 'AccountCtrl'
                }
             }
-         })
+         });
 
       $urlRouterProvider.otherwise('/sign-in');
-   })
+   });
