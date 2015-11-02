@@ -51,5 +51,6 @@
     "serve-favicon": "^2.0.1",
     "serve-static": "^1.10.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": { "start": "node server/server.js" }
 }
