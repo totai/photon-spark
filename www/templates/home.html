@@ -1,0 +1,35 @@
+<ion-view title="Home">
+    <ion-content padding="true">
+        <button class="button button button-assertive" ng-click="sendTemp_II()"><b>Temp/Humid</b></button>
+
+        <button class="button button button-energized" ng-click="sendTemp_III()"><b>Spark III</b></button>
+
+        <div>&nbsp;</div>
+
+        <div class="circle_C"><b>{{Spark_C | number:1}}º</b></div>
+
+        <div class="circle_H"><b>{{Spark_H | number:0}} %</b></div>
+
+        <div class="circle_Out"><b>{{Spark_Out | number:1}}º</b></div>
+
+        <div>&nbsp;</div>
+
+        <button class="button button button-royal" ng-click="sendLedON()"><b>Spark I</b></button>
+        <button class="button button button-calm" ng-click="sendTempErr()"><b>Test II</b></button>
+
+
+        <div>&nbsp;</div>
+
+        <pre>result: {{status}}</pre>
+
+        <!-- <div>&nbsp;</div> -->
+
+        <pre>data: {{data}}</pre>
+
+        <pre>error: {{statusError}}</pre>
+        <p></p>
+        <p>
+            <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a>
+        </p>
+    </ion-content>
+</ion-view>
