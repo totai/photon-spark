@@ -1,0 +1,36 @@
+/* Empty. Add your own CSS if you like */
+.circle_C {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    font-size: 30px;
+    font-family: Arial;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+    background: #2d38ff
+}
+
+.circle_H {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    font-size: 30px;
+    font-family: Arial;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+    background: #eb2dea
+}
+
+.circle_Out {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    font-size: 30px;
+    font-family: Arial;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+    background: #0eae38
+}

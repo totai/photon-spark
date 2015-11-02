@@ -1,0 +1,17 @@
+<ion-view title="Temperatures">
+    <ion-content class="padding">
+
+        <canvas tc-chartjs-line chart-data="myData" chart-options="myOptions" width="300" height="280"></canvas>
+
+        <div ng-controller="MONITOR">
+            <div class="monitorMessages">
+                <p class="monitorMessages" ng-repeat="Messages in MonitorMessages | limitTo:20">
+                    {{ Messages.ts }} -- {{ Messages.SEQ}} : {{ Messages.ct}} : {{ Messages.T}} : {{ Messages.v1}} : {{
+                    Messages.v2}} : {{ Messages.v3}} : {{ Messages.tx}}
+                </p>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
+
