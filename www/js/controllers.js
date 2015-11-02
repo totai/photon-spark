@@ -1,8 +1,9 @@
 angular.module('SparkCore.controllers', [])
 
-   .controller('DashCtrl', function ($scope, $http) {
+   .controller('HomeTabCtrl', function ($scope, $http) {
 
       $scope.sendFinderEnroll = function () {
+         $scope.status = 'sendFinderEnroll'
          $http.post("https://api.spark.io/v1/devices/Spark_I/enroll/")
             .success(function (data, status) {
                $scope.status = status
@@ -15,6 +16,7 @@ angular.module('SparkCore.controllers', [])
       }
 
       $scope.sendLedON = function () {
+         $scope.status = 'sendLedON'
          $http.post("https://api.spark.io/v1/devices/Spark_I/led/")
             .success(function (data, status) {
                $scope.status = status
@@ -27,6 +29,7 @@ angular.module('SparkCore.controllers', [])
       }
 
       $scope.sendTemp_II = function () {
+         $scope.status = 'sendTemp_II'
          $http.get("https://api.spark.io/v1/devices/Spark_II/resultX")
             .success(function (data, status) {
                $scope.status = status
@@ -42,6 +45,7 @@ angular.module('SparkCore.controllers', [])
       }
 
       $scope.sendTempErr = function () {
+         $scope.status = 'sendTempErr'
          $http.get("https://api.spark.io/v1/devices/Spark_II/errorX")
             .success(function (data, status) {
                $scope.statusError = status + ' : ' + data.result
@@ -52,6 +56,7 @@ angular.module('SparkCore.controllers', [])
       }
 
       $scope.sendTemp_III = function () {
+         $scope.status = 'sendTemp_III'
          $http.get("https://api.spark.io/v1/devices/Spark_III/zTemp")
             .success(function (data, status) {
                $scope.status = status
@@ -64,7 +69,6 @@ angular.module('SparkCore.controllers', [])
             .error(function (data, status) {
                $scope.statusError = status + ' : ' + angular.toJson(data)
             })
-
       }
 
       $scope.logout = function () {
@@ -104,7 +108,6 @@ angular.module('SparkCore.controllers', [])
          title: {
             text: 'Hello'
          },
-
          loading: false
       }
    })
@@ -148,13 +151,12 @@ angular.module('SparkCore.controllers', [])
          {id: 4, fName: 'John', lName: "Doe"},
          {id: 5, fName: 'Peter', lName: "Pan"}
       ];
-
    })
 
-   .controller('SignInCtrl', function ($scope, $state) {
-      $scope.signIn = function (user) {
+   .controller('SignInCtrl', function($scope, $state) {
+      $scope.signIn = function(user) {
          console.log('Sign-In', user);
-         $state.go('tab.dash');
+         $state.go('tabs.home');
       };
    })
 
@@ -213,4 +215,4 @@ angular.module('SparkCore.controllers', [])
          }
       };
 
-   })
+   });

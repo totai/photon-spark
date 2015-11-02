@@ -1,9 +1,7 @@
 'use strict';
-
 angular.module('SparkCore.services', [])
 
    .factory('Friends', function () {
-
       var friends = [
          {id: 0, name: 'Google Graphs', icon: 'ion-email'},
          {id: 1, name: 'HighChart', icon: 'ion-person-stalker'},

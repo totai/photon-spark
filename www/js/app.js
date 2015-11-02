@@ -2,8 +2,8 @@ angular.module('SparkCore', [
       'ionic',
       'SparkCore.services',
       'SparkCore.controllers',
-      'SparkCore.auth',
-      'SparkCore.user',
+//      'SparkCore.auth',
+//      'SparkCore.user',
       'tc.chartjs',
       'MONITOR',
       'highcharts-ng'
@@ -19,7 +19,7 @@ angular.module('SparkCore', [
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
          }
-         $http.defaults.headers.common.Authorization = 'Bearer 67bef8e96e9a68644ed539609dac64451c90bec8'
+         $http.defaults.headers.common.Authorization = 'Bearer 67bef8e96e9a68644ed539609dac64451c90bec8';
          var newToken = '67bef8e96e9a68644ed539609dac64451c90bec8'
       });
    })
@@ -30,66 +30,67 @@ angular.module('SparkCore', [
    .config(function ($stateProvider, $urlRouterProvider) {
       $stateProvider
          .state('signin', {
-            url: '/sign-in',
-            templateUrl: 'templates/sign-in.html',
+            url: "/sign-in",
+            templateUrl: "sign-in.html",
             controller: 'SignInCtrl'
          })
          .state('forgotpassword', {
-            url: '/forgot-password',
-            templateUrl: 'templates/forgot-password.html'
+            url: "/forgot-password",
+            templateUrl: "forgot-password.html"
          })
-         .state('tab', {
+         .state('tabs', {
             url: "/tab",
             abstract: true,
             templateUrl: "templates/tabs.html"
          })
-
-         // Each tab has its own nav history stack:
-         .state('tab.dash', {
-            url: '/dash',
+         .state('tabs.home', {
+            url: "/home",
             views: {
-               'tab-dash': {
-                  templateUrl: 'templates/tab-dash.html',
-                  controller: 'DashCtrl'
+               'home-tab': {
+                  templateUrl: "templates/home.html",
+                  controller: 'HomeTabCtrl'
                }
             }
          })
-         .state('tab.config', {
-            url: '/config',
+         .state('tabs.facts', {
+            url: "/facts",
             views: {
-               'tab-config': {
-                  templateUrl: 'templates/tab-config.html',
-                  controller: 'ConfigCtrl'
+               'home-tab': {
+                  templateUrl: "templates/facts.html"
                }
             }
          })
-         .state('tab.friends', {
-            url: '/friends',
+         .state('tabs.facts2', {
+            url: "/facts2",
             views: {
-               'tab-friends': {
-                  templateUrl: 'templates/tab-friends.html',
-                  controller: 'FriendsCtrl'
+               'home-tab': {
+                  templateUrl: "facts2.html"
                }
             }
          })
-         .state('tab.friend-detail', {
-            url: '/friend/:friendId',
+         .state('tabs.about', {
+            url: "/about",
             views: {
-               'tab-friends': {
-                  templateUrl: 'templates/friend-detail.html',
-                  controller: 'FriendDetailCtrl'
+               'about-tab': {
+                  templateUrl: "about.html"
                }
             }
          })
-         .state('tab.account', {
-            url: '/account',
+         .state('tabs.navstack', {
+            url: "/navstack",
             views: {
-               'tab-account': {
-                  templateUrl: 'templates/tab-account.html',
-                  controller: 'AccountCtrl'
+               'about-tab': {
+                  templateUrl: "nav-stack.html"
+               }
+            }
+         })
+         .state('tabs.contact', {
+            url: "/contact",
+            views: {
+               'contact-tab': {
+                  templateUrl: "templates/contact.html"
                }
             }
          });
-
-      $urlRouterProvider.otherwise('/sign-in');
-   });
+      $urlRouterProvider.otherwise("/sign-in");
+   })
