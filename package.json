@@ -1,0 +1,24 @@
+{
+  "name": "photon-spark",
+  "version": "1.0.0",
+  "description": "photon spark IONIC",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totai/photon-spark.git"
+  },
+  "keywords": [
+    "photon",
+    "spark",
+    "ionic"
+  ],
+  "author": "mb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/totai/photon-spark/issues"
+  },
+  "homepage": "https://github.com/totai/photon-spark#readme"
+}
