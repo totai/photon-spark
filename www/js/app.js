@@ -31,7 +31,7 @@ angular.module('SparkCore', [
       $stateProvider
          .state('signin', {
             url: "/sign-in",
-            templateUrl: "sign-in.html",
+            templateUrl: "templates/sign-in.html",
             controller: 'SignInCtrl'
          })
          .state('forgotpassword', {
