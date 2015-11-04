@@ -45,7 +45,7 @@ SparkPublish.addEventListener('MOTION', function (e) {
          }
       });
    });
-   console.log(req_body.ts + ' - ' + req_body.core + ' - ' + req_body.v1);
+   console.log('MOTION: [ ' + req_body.ts + ' - ' + req_body.core + ' - ' + req_body.v1 +' ]');
 
 });
 
