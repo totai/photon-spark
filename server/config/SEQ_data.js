@@ -41,7 +41,7 @@
       }
    };
 
-   exports.SEQ_ID_aggregate = function (id_string) {
+   exports.SEQ_ID_aggregate = function () {
       var Spark_core = require('../api/spark_core/spark_core.model');
       var InsertCore = function (cores) {
          _.forEach(cores, function (core) {
