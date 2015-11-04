@@ -65,8 +65,9 @@
                   "new": true,
                   upsert: true
                }, function (err, doc) {
+                  //var count = new Object();
                   var count;
-                  count = doc.SEQ_num;
+                  count = doc.SEQ_num + 0 ;
                   if (err) {
                      return next(err);
                   }
