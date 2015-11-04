@@ -20,6 +20,6 @@ var Spark_dataSchema = new Schema({
    v3L: Number,
    v3C: Number,
    ct: Number
-})
+});
 
 module.exports = mongoose.model('Spark_data_mins', Spark_dataSchema);
