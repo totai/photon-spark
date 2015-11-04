@@ -1,6 +1,7 @@
 (function () {
 
    var mongoose = require('mongoose'),
+      _ = require('lodash'),
       db = null,
       collection_name = 'io_counters',
       IO_Counter = null;
