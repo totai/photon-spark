@@ -88,7 +88,6 @@ var Types = [{
 }]
 InsertCoreType(Types);
 
-
 // see new Cores
 var Spark_core = require('../api/spark_core/spark_core.model');
 var InsertCore = function (cores) {
