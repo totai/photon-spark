@@ -95,9 +95,7 @@
          }
       });
       return schema.pre('save', function (next) {
-         var self,
-            _this = this;
-         self = this;
+         var self = this;
          if (!self.SEQ) {
             return Counter.collection.findAndModify({
                   _id: model_name
