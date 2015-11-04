@@ -22,4 +22,4 @@ var Spark_dataSchema = new Schema({
    ct: Number
 });
 
-module.exports = mongoose.model('Spark_data_mins', Spark_dataSchema);
+module.exports = mongoose.model('spark_data_mins', Spark_dataSchema);
