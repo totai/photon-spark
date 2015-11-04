@@ -14,27 +14,3 @@ router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
 module.exports = router;
-
-var body = {
-   _id: 'MOV',
-   name : "Movement detection",
-   ct: "counter",
-   v1: "void",
-   v2:  "void",
-   v3:  "void",
-   tx: "text message"
-}
-
-Spark_core_type.create(body, function (err, domain) {
-   if (err) {
-      return handleError(res, err);
-   }
-   var updated = _.merge(domain, req_body);
-   updated.save(function (err) {
-      if (err) {
-         return handleError(res, err);
-      }
-   });
-});
-
-console.log(body.ts + ' - ' + body.SEQ + ' : ' + body.ct + '  - ' + body.v1);
