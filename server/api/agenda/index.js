@@ -5,15 +5,15 @@ var config = require('../../config/environment'),
    Aggregator = require('../spark_data/aggregator'),
    _ = require('lodash'),
    Agenda = require('agenda'),
-   agenda = new (Agenda)
+   agenda = new (Agenda);
 
 agenda.database(config.mongo.uri, 'spark_schedule');
-agenda.name('spark_queue')
+agenda.name('spark_queue');
 agenda.defaultLockLifetime(20000);  // 20 seconds
 agenda.processEvery('30 seconds');
 
 agenda.purge(function (err, numRemoved) {
-   console.log('Agenda: ' + numRemoved + ' purged')
+   console.log('Agenda: [ ' + numRemoved + ' ] purged')
 });
 
 agenda.define('Spark Aggregate MINS', {concurrency: 1}, function (job, done) {
@@ -58,19 +58,19 @@ agenda.start();
 
 agenda.jobs({}, function (err, jobs) {
    _.forEach(jobs, function (job) {
-      console.log('AGG Jobs: ' + JSON.stringify(job))
+      console.log('AGG Jobs: ' + JSON.stringify(job));
 
       var Job = eval('(' + JSON.stringify(job) + ')');
 
-      var PrevAgendaShedule = later.schedule(later.parse.cron(Job.repeatInterval)).prev(1)
+      var PrevAgendaShedule = later.schedule(later.parse.cron(Job.repeatInterval)).prev(1);
 
-      var lastFinishedAt = Job.lastFinishedAt
+      var lastFinishedAt = Job.lastFinishedAt;
 
-      console.log(moment(lastFinishedAt).unix() - moment(PrevAgendaShedule).unix())
+      console.log(moment(lastFinishedAt).unix() - moment(PrevAgendaShedule).unix());
 
-      console.log('DATES: ' + moment(lastFinishedAt).format() + ' -:- ' + moment(PrevAgendaShedule).format())
+      console.log('DATES: ' + moment(lastFinishedAt).format() + ' -:- ' + moment(PrevAgendaShedule).format());
 
-      console.log("XXX " + Job.repeatInterval )
+      console.log("XXX " + Job.repeatInterval );
 
       console.log('Z '+ later.schedule(later.parse.cron(Job.repeatInterval)).prev(1))
 
@@ -87,7 +87,7 @@ var sched = later.parse.cron('15 0 * * *');
 
 // console.log(JSON.stringify(sched)+' -:- ' + later.schedule(sched).prev(1))
 
-var T = Date(later.schedule(sched).prev(1))
+var T = Date(later.schedule(sched).prev(1));
 
 // console.log(T)
 
