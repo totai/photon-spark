@@ -34,11 +34,11 @@ var Spark_core_type = require('../api/spark_core_type/spark_core_type.model');
 var InsertCoreType = function (types) {
    _.forEach(types, function (type) {
       Spark_core_type.findById(type._id, function (err, res) {
-         if (err) console.log("FIND: " + err);
+         if (err) console.log("FIND Spark_core_type : " + err);
          if (!res) {
             Spark_core_type.create(type, function (err, success) {
-               if (err) console.log("ERROR: " + err);
-               console.log("SAVE: " + success);
+               if (err) console.log("ERROR: Spark_core_type [" + err + ' ]');
+               console.log("SAVE Spark_core_type : [ " + success + ' ]');
             })
          }
       })
@@ -89,6 +89,7 @@ InsertCoreType(Types);
 
 // see new Cores
 var Spark_core = require('../api/spark_core/spark_core.model');
+
 var InsertCore = function (cores) {
    _.forEach(cores, function (core) {
       Spark_core.findById(core._id, function (err, res) {
