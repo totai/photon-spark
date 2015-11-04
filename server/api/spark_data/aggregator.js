@@ -143,8 +143,6 @@
          })
    };
 
-
-
    exports.aggregate_data_HOUR = function (period) {
       var AggProject = AggProjectCalc(period);
       var matchCalc = AggProject.Math;
