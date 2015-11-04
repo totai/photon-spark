@@ -35,7 +35,7 @@ require('./api/spark_data/spark_data_mins.model');
 require('./api/spark_data/spark_data_hours.model');
 require('./api/spark_data/spark_data_days.model');
 
-require('./api/agenda'); // starts agenda schedule
+//require('./api/agenda'); // starts agenda schedule
 
 var app = express();
 
