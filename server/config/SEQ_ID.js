@@ -44,7 +44,7 @@
       // get "io_counters" _id (text)
       model_name = options.counterID.toLowerCase();
       // get "prefix" to put in front of base_32 number:  "C0" + "A1B2C3D4"
-      prefix = options.prefix
+      prefix = options.prefix;
       Counter = db.model(counter_name);
       schema.add({
          SEQ: {
@@ -53,8 +53,6 @@
          }
       });
       return schema.pre('save', function (next) {
-         var self,
-            _this = this;
          self = this;
          if (!self.SEQ) {
             return Counter.collection.findAndModify({
