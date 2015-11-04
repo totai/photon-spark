@@ -26,7 +26,6 @@ User.find({}).remove(function () {
       function (error, success) {
          if (error) console.log("User error : " + error);
          console.log("Last User : " + success.SEQ);
-         return;
       })
 });
 
@@ -44,7 +43,7 @@ var InsertCoreType = function (types) {
          }
       })
    })
-}
+};
 var Types = [{
    _id: "THT",
    v1: "Indoor Temp",
@@ -85,7 +84,7 @@ var Types = [{
    tx: "camera view",
    ct: "counter",
    name: "Camera data"
-}]
+}];
 InsertCoreType(Types);
 
 // see new Cores
@@ -105,7 +104,7 @@ var InsertCore = function (cores) {
          }
       })
    })
-}
+};
 var Cores = [{
    _id: "55ff69065075555354381887",
    ownerSEQ: "AAA",
@@ -122,5 +121,5 @@ var Cores = [{
    location: "GVA",
    comment: "My comments",
    types: ["MOV", "THT", "LGT"]
-}]
+}];
 InsertCore(Cores);
