@@ -27,9 +27,9 @@ SparkPublish.addEventListener('MOTION', function (e) {
       v2: 0,
       v3: 0,
       tx: ""
-   }
+   };
    var rawData = JSON.parse(e.data);
-   req_body.core = rawData.coreid
+   req_body.core = rawData.coreid;
    req_body.ts = moment(rawData.published_at).format("YYYY-MMM-DD HH:mm");
    var dataClean = "{" + rawData.data.replace(/\'/g, '\"') + "}";  // replace ' with "
    req_body = _.merge(req_body, JSON.parse(dataClean));
