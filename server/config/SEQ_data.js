@@ -3,7 +3,7 @@
    var mongoose = require('mongoose'),
       db = null,
       collection_name = 'io_counters',
-      IO_Counter = null
+      IO_Counter = null;
 
    exports.init_SEQ_ID_data = function (database, id_string, id_name) {
       db = database;
@@ -22,7 +22,7 @@
       } catch (e) {
          //console.log('-> ' + e)
          if (e.name === 'MissingSchemaError') {
-            console.log('spark_SEQ_ID model - NEW')
+            console.log('spark_SEQ_ID model - NEW');
             IO_Counter = mongoose.model(collection_name, IO_countersSchema);
          }
       }
@@ -41,7 +41,6 @@
    };
 
    exports.SEQ_ID_aggregate = function (id_string) {
-
       var Spark_core = require('../api/spark_core/spark_core.model');
       var InsertCore = function (cores) {
          _.forEach(cores, function (core) {
@@ -49,16 +48,16 @@
                if (err) console.log("FIND: " + err);
                if (!res) {
                   console.log("CORE: " + res);
-                  Spark_core.create(core, function (err, success) {
+                  Spark_core.create(core, function (err, result) {
                      if (err) console.log("CORE ERR: " + err);
-                     if (success) {
-                        console.log("SAVE: " + success);
+                     if (result) {
+                        console.log("SAVE SEQ_ID: [" + result+ " ]");
                      }
                   })
                }
             })
          })
-      }
+      };
       var Cores = [{
          _id: "55ff69065075555354381887",
          ownerSEQ: "AAA",
@@ -75,19 +74,19 @@
          location: "GVA",
          comment: "My comments",
          types: ["MOV", "THT", "LGT"]
-      }]
+      }];
       InsertCore(Cores);
 
-   }
+   };
 
    exports.plugin = function (schema, options) {
       if (!options.counterID) {
-         throw new Error('Missing required parameter: counterID');
+         throw new Error('Missing: CounterID required parameter: counterID');
       }
       // get "io_counters" _id (text)
       var model_name = options.counterID.toLowerCase();
       // get "prefix" to put in front of base_32 number:  "C0" + "A1B2C3D4"
-      var prefix = options.prefix
+      var prefix = options.prefix;
       var Counter = db.model(collection_name);
       schema.add({
          SEQ: {
