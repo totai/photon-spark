@@ -59,7 +59,7 @@ require('./api/spark_raw');  // starts up SSE
 //require('./api/spark_core_type');
 //require('./api/events_server')(app);
 
-app.set('port', 8080);
+app.set('port', 80);
 app.listen(app.get('port'), function () {
    console.log('Express: ' + app.get('port'))
 });
