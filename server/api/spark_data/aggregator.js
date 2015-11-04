@@ -7,7 +7,7 @@
       _ = require('lodash');
 
    var AggProjectCalc = function (period) {
-      var AggProj = {}
+      var AggProj = {};
       switch (period) {
          case 'mins':
             AggProj.Project = {
@@ -23,11 +23,11 @@
                m: {"$minute": "$ts"},
                s: {"$second": "$ts"},
                ml: {"$millisecond": "$ts"}
-            }
+            };
             AggProj.Math = ["$ml",
                {"$multiply": ["$s", 1000]},   // seconds  1'000
                {"$multiply": ["$m", 60000]}    // minutes  60'000
-            ]
+            ];
             return AggProj;
          case 'days':
             AggProj.Project = {
@@ -35,12 +35,12 @@
                m: {"$minute": "$ts"},
                s: {"$second": "$ts"},
                ml: {"$millisecond": "$ts"}
-            }
+            };
             AggProj.Math = ["$ml",
                {"$multiply": ["$s", 1000]},   // seconds  1'000
                {"$multiply": ["$m", 60000]},    // minutes  60'000
                {"$multiply": ["$h", 3600000]}  // hourly  60 * 60 * 1'000
-            ]
+            ];
             return AggProj;
          case 'weeks':
             AggProj.Project = {
@@ -48,12 +48,12 @@
                m: {"$minute": "$ts"},
                s: {"$second": "$ts"},
                ml: {"$millisecond": "$ts"}
-            }
+            };
             AggProj.Math = ["$ml",
                {"$multiply": ["$s", 1000]},   // seconds  1'000
                {"$multiply": ["$m", 60000]},    // minutes  60'000
                {"$multiply": ["$h", 3600000]}  // hourly  60 * 60 * 1'000
-            ]
+            ];
             return AggProj;
          case 'months':
             AggProj.Project = {
@@ -61,7 +61,7 @@
                m: {"$minute": "$ts"},
                s: {"$second": "$ts"},
                ml: {"$millisecond": "$ts"}
-            }
+            };
             AggProj.Math = ["$ml",
                {"$multiply": ["$s", 1000]},   // seconds  1'000
                {"$multiply": ["$m", 60000]},    // minutes  60'000
@@ -69,7 +69,7 @@
             ]
       }
       return AggProj;
-   }
+   };
 
    exports.aggregate_data = function (period) {
       var AggProject = AggProjectCalc(period);
@@ -78,17 +78,17 @@
       var tempMerge = {SEQ: 1, T: 1, ts: 1, v1: 1, v2: 1, v3: 1, date: "$ts", _id: 0};
       AggProject = _.merge(AggProject.Project, tempMerge);
       //console.log('AggProject: ' + JSON.stringify(AggProject))
-      var endDate = moment().subtract(0, 'hours').toDate()
-      var CoreMatch = {}
+      var endDate = moment().subtract(0, 'hours').toDate();
+      var CoreMatch = {};
       Spark_raw.aggregate({$group: {_id: "$SEQ", T: {$addToSet: "$T"}}},
          function (err, res) {
             if (err) console.log('AGG_X: ' + err);
             // [{"_id":"51ff6f065067545749550287","T":["THT"]},{"_id":"55ff69065075555354381887","T":["LGT","MOV"]}]
             _.forEach(res, function (Core) {
                _.forEach(Core.T, function (CoreT) {
-                  CoreMatch.T = CoreT
-                  CoreMatch.SEQ = Core._id
-                  console.log('AGG RAW: ' + CoreMatch.SEQ + ' : ' + CoreMatch.T)
+                  CoreMatch.T = CoreT;
+                  CoreMatch.SEQ = Core._id;
+                  console.log('AGG RAW: ' + CoreMatch.SEQ + ' : ' + CoreMatch.T);
                   Spark_raw.aggregate(
                      //  {$match: {T: "MOV", SEQ: "55ff69065075555354381887", ts: {$lt: endDate}}},
                      {$match: {T: CoreMatch.T, SEQ: CoreMatch.SEQ, ts: {$lt: endDate}}},
@@ -123,7 +123,7 @@
                      },
                      {$sort: {"ts": 1}},
                      function (err, data) {
-                        console.log('DATA: ' + JSON.stringify(data))
+                        console.log('DATA: ' + JSON.stringify(data));
                         if (err) {
                            console.log('ERR_loop: ' + CoreMatch.SEQ + ' : ' + CoreMatch.T + ' : ' + err)
                         }
@@ -141,7 +141,7 @@
                })
             })
          })
-   }
+   };
 
 
 
@@ -166,16 +166,16 @@
       };
       AggProject = _.merge(AggProject.Project, tempMergeH);
       //console.log('AggProject_H: ' + JSON.stringify(AggProject))
-      var endDate = moment().subtract(0, 'hours').toDate()
-      var CoreMatch = {}
+      var endDate = moment().subtract(0, 'hours').toDate();
+      var CoreMatch = {};
       Spark_data_mins.aggregate({$group: {_id: "$SEQ", T: {$addToSet: "$T"}}},
          function (err, res) {
             //if (err) console.log('AGG_HOUR ERR: ' + err);
             _.forEach(res, function (Core) {
                _.forEach(Core.T, function (CoreT) {
-                  CoreMatch.T = CoreT
-                  CoreMatch.SEQ = Core._id
-                  console.log('AGG HR: ' + CoreMatch.SEQ + ' : ' + CoreMatch.T)
+                  CoreMatch.T = CoreT;
+                  CoreMatch.SEQ = Core._id;
+                  console.log('AGG HR: ' + CoreMatch.SEQ + ' : ' + CoreMatch.T);
                   //  {$match: {T: "MOV", SEQ: "55ff69065075555354381887", ts: {$lt: endDate}}},
                   Spark_data_mins.aggregate(
                      {$match: {T: CoreMatch.T, SEQ: CoreMatch.SEQ, ts: {$lt: endDate}}},
@@ -220,7 +220,7 @@
                                     }
                                  }
                                  Spark_data_hours.create(data, function (err, res) {
-                                 })
+                                 });
                                  break;
                               case 'days':
                                  if (data.length > 0) {
@@ -229,7 +229,7 @@
                                     }
                                  }
                                  Spark_data_days.create(data, function (err, res) {
-                                 })
+                                 });
                                  break;
                               case 'weeks':
                                  if (data.length > 0) {
@@ -238,7 +238,7 @@
                                     }
                                  }
                                  Spark_data_days.create(data, function (err, res) {
-                                 })
+                                 });
                                  break;
                            }
                         }
