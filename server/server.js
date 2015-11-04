@@ -31,7 +31,7 @@ if (config.seedDB) {
    require('./config/seed');
 }
 
-require('./api/spark_data/Spark_data_mins.model');
+require('./api/spark_data/spark_data_mins.model');
 require('./api/spark_data/spark_data_hours.model');
 require('./api/spark_data/spark_data_days.model');
 
@@ -62,6 +62,6 @@ require('./api/spark_raw');  // starts up SSE
 app.set('port', 8080);
 app.listen(app.get('port'), function () {
    console.log('Express: ' + app.get('port'))
-})
+});
 // Expose app
 exports = module.exports = app;
