@@ -1,6 +1,6 @@
 'use strict';
 var _ = require('lodash');
-var Spark_data_mins = require('./Spark_data_mins.model.js');
+var Spark_data_mins = require('./spark_data_mins.model.js');
 
 // Get list of Spark_data_mins
 exports.index = function (req, res) {
