@@ -77,7 +77,6 @@ agenda.jobs({}, function (err, jobs) {
    })
 });
 
-
 agenda.on('start', function (job) {
    //console.log("Job %s starting", job.attrs.name);
    console.log("Job: " + job.attrs.name + ' -> starting: ' + Date());
@@ -92,4 +91,3 @@ var T = Date(later.schedule(sched).prev(1));
 // console.log(T)
 
 // var prev = later.schedule(sched).prev(5, startDate, endDate);
-
