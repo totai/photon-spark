@@ -54,14 +54,10 @@ require('./routes')(app);
 
 require('./api/spark_raw');  // starts up SSE
 
-//require('./api/spark_data');
-//require('./api/spark_core');
-//require('./api/spark_core_type');
-//require('./api/events_server')(app);
-
-app.set('port', 8080);
-app.listen(app.get('port'), function () {
-   console.log('Express: ' + app.get('port'))
+//app.set('port', config.port);
+app.listen(config.port, '0.0.0.0', function () {
+   console.log('Express at PORT : ' + config.port)
 });
+
 // Expose app
 exports = module.exports = app;
