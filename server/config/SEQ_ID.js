@@ -38,7 +38,7 @@
       } catch (e) {
          //console.log('-> ' + e)
          if (e.name === 'MissingSchemaError') {
-            console.log('SEQ_ID model - NEW')
+            console.log('SEQ_ID model - NEW');
             IO_Counter = mongoose.model(collection_name, IO_countersSchema);
          }
       }
@@ -73,8 +73,6 @@
          }
       });
       return schema.pre('save', function (next) {
-         var self,
-            _this = this;
          self = this;
          if (!self.Seq) {
             return Counter.collection.findAndModify({
