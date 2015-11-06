@@ -1,6 +1,6 @@
 (function () {
 
-// *** put this SEQ_ID.js file in the "config" folder
+// *** put this SEQ_ID.js file in "config" folder
 
 // *** within initial start-up (app.js) file of project --> set up SEQ_ID.js :
 
