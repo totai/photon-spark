@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SparkCore', [])
+angular.module('SparkCore.auth', [])
 
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
     var currentUser = {};
