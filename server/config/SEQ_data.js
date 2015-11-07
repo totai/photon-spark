@@ -18,12 +18,12 @@
       });
       try {
          if (mongoose.model(collection_name)) {
-            console.log('spark_SEQ_ID model - EXISTS')
+           // console.log('spark SEQ_ID [ ' + collection_name + ' ] EXISTS')
          }
       } catch (e) {
          //console.log('-> ' + e)
          if (e.name === 'MissingSchemaError') {
-            console.log('spark_SEQ_ID model - NEW');
+            console.log('spark SEQ_ID [ ' + collection_name + ' ] NEW');
             IO_Counter = mongoose.model(collection_name, IO_countersSchema);
          }
       }
@@ -33,8 +33,8 @@
             name: id_name
          },
          function (error, success) {
-            if (error) console.log("spark_SEQ_ID : '" + id_string + "' : exists");
-            if (!error) console.log("spark_SEQ_ID OK : " + success);
+            if (error) console.log("spark SEQ_ID [ " + collection_name +' : '+ id_string + " ] EXISTS");
+            if (!error) console.log("spark SEQ_ID [ " + collection_name +' : '+ id_string + " ] CREATED -- " + success);
          });
       if (!mongoose.model(collection_name)) {
          return db.model(collection_name, IO_countersSchema);
@@ -46,13 +46,13 @@
       var InsertCore = function (cores) {
          _.forEach(cores, function (core) {
             Spark_core.findById(core._id, function (err, res) {
-               if (err) console.log("FIND: " + err);
+               if (err) console.log("CORE NOT FOUND : " + err);
                if (!res) {
-                  console.log("CORE: " + res);
+                  console.log("CORE FOUND : " + res);
                   Spark_core.create(core, function (err, result) {
-                     if (err) console.log("CORE ERR: " + err);
+                     if (err) console.log("CORE CREATE ERROR: " + err);
                      if (result) {
-                        console.log("SAVE SEQ_ID: [" + result+ " ]");
+                        console.log("CORE CREATE : [" + result+ " ]");
                      }
                   })
                }
