@@ -1,11 +1,9 @@
 'use strict';
 
-
 var mongoose = require('mongoose');
 var config = require('../environment');
 //var globalConnection = require('./global');
 var localConnection = require('./local');
-
 
 function MongooseConnection() {
   this.connections = [];
@@ -20,7 +18,6 @@ MongooseConnection._init = function () {
     console.log('local connection established');
   });
 };
-
 
 MongooseConnection.use = function (db) {
   var self = this;
