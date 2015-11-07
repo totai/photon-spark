@@ -11,7 +11,7 @@ module.exports = router;
 
 // eventSource to retreive data via api.spark.io
 var eventSourceInit = {
-   headers: {Authorization: "Bearer 2e6a52cadb9358905737c5b5c2b2c3a4a9355c5b"}
+   headers: {Authorization: "Bearer 67bef8e96e9a68644ed539609dac64451c90bec8"}
 };
 var url = "https://api.spark.io/v1/devices/events/MOTION/";
 var SparkPublish = new EventSource(url, eventSourceInit);
