@@ -55,11 +55,6 @@ var UserSchema = new Schema({
    salt: {type: String}
 });
 
-//UserSchema.plugin(genSEQ, {
-//counterID: 'SEQ',
-//prefix: 'US'
-//});
-
 UserSchema.plugin(SEQ_ID.plugin, {counterID: 'core', prefix: 'US'});
 
 UserSchema.plugin(timestamps, {
