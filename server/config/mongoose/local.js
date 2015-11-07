@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var config = require('../environment');
 //var Company = require('../../api/company/company.model'); // circular reference !! broken
 
-
 var globalURL = 'mongodb://admin:passpass@ds061148-a.mongolab.com:61148/global';
 
 // TODO:
