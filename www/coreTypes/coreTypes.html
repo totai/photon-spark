@@ -1,0 +1,57 @@
+<div class="page-wrapper">
+
+  <div id="sidebar-wrapper">
+    <ul class="sidebar">
+      <li class="sidebar-header"><a>CoreTypes</a></li>
+
+      <li class="sidebar-title">
+        <span>coreTypes</span><a class="icon-new-channel" ng-click="createNewChannel()"><i class="fa fa-plus"></i></a>
+      </li>
+      <li class="sidebar-list" ng-repeat="channel in channels">
+        <a ng-click="switchChannel(channel)"><span class="channel-hashtag">#</span>{{channel.name}}</a>
+      </li>
+
+      <li class="sidebar-title"><span>Separator</span></li>
+
+    </ul>
+  </div>
+
+
+</div>
+
+
+<div ng-controller="ModalInstanceCtrl">
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Create a new Channel</h3>
+    </div>
+    <div class="modal-body">
+
+      <h5 style="text-align: center">This will create a new public channel that anyone on your team can join.</h5>
+
+      <p style="text-align: center">If you need this conversation to be private, create a new Private Group instead.</p>
+
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Name</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="newChannel.name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Purpose</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="newChannel.purpose.value">
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-success" ng-click="ok()">Create Channel</button>
+    </div>
+  </script>
+</div>
