@@ -1,7 +1,8 @@
 'use strict';
 var _ = require('lodash');
-var User = require('../api/user/user.model');
+
 // seed new Users
+var User = require('../api/user/user.model');
 User.find({}).remove(function () {
    User.create({
          provider: 'local',
@@ -24,8 +25,8 @@ User.find({}).remove(function () {
          password: 'admin'
       },
       function (error, success) {
-         if (error) console.log("User error : " + error);
-         console.log("Last User : " + success.SEQ);
+         if (error) console.log("USER error : " + error);
+         console.log("USER Created : " + success.SEQ);
       })
 });
 
@@ -34,7 +35,7 @@ var Spark_core_type = require('../api/spark_core_type/spark_core_type.model');
 var InsertCoreType = function (types) {
    _.forEach(types, function (type) {
       Spark_core_type.findById(type._id, function (err, res) {
-         if (err) console.log("FIND Spark_core_type : " + err);
+         if (err) console.log("Spark_core_type NOT FOUND : " + err);
          if (!res) {
             Spark_core_type.create(type, function (err, success) {
                if (err) console.log("ERROR: Spark_core_type [" + err + ' ]');
@@ -89,18 +90,14 @@ InsertCoreType(Types);
 
 // see new Cores
 var Spark_core = require('../api/spark_core/spark_core.model');
-
 var InsertCore = function (cores) {
    _.forEach(cores, function (core) {
       Spark_core.findById(core._id, function (err, res) {
-         if (err) console.log("FIND: " + err);
+         if (err) console.log("Spark_core NOT FOUND : " + err);
          if (!res) {
-            console.log("CORE: " + res);
             Spark_core.create(core, function (err, success) {
-               if (err) console.log("CORE ERR: " + err);
-               if(success){
-                  console.log("SAVE: " + success);
-               }
+               if (err) console.log("ERROR: Spark_core [" + err + ' ]');
+               console.log("SAVE Spark_core : [ " + success + ' ]');
             })
          }
       })
@@ -122,5 +119,13 @@ var Cores = [{
    location: "GVA",
    comment: "My comments",
    types: ["MOV", "THT", "LGT"]
+}, {
+   _id: "66ff69065075523354381XXX",
+   ownerSEQ: "CCC",
+   coreid: "66ff69065075523354381XXX",
+   name: "OUTDOOR Temp Sensor",
+   location: "NAS",
+   comment: "My NASSAU comments",
+   types: ["HUM", "THT", "LGT"]
 }];
 InsertCore(Cores);
