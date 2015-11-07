@@ -18,12 +18,10 @@ console.log(config.mongo.uri);
 
 // set up SEQ_ID.js
 var SEQ_ID = require("./config/SEQ_ID");
-// initialize io_counters
 SEQ_ID.load_SEQ_ID(mongoose.connection, 'core','last core sequence number');
 
 // set up SEQ_data.js
 var SEQ_data = require("./config/SEQ_data");
-// initialize io_counters
 SEQ_data.init_SEQ_ID_data(mongoose.connection, 'spark_data','project for Spark Core data');
 
 // Populate DB with sample data
@@ -34,6 +32,11 @@ if (config.seedDB) {
 require('./api/spark_data/spark_data_mins.model');
 require('./api/spark_data/spark_data_hours.model');
 require('./api/spark_data/spark_data_days.model');
+
+require('./api/spark_core');
+require('./api/spark_core_type');
+//require('./api/spark_data');
+require('./api/spark_raw');  // starts up SSE
 
 require('./api/agenda'); // starts agenda schedule
 
@@ -52,9 +55,6 @@ app.all('*', function (req, res, next) {
 require('./config/express')(app);
 require('./routes')(app);
 
-require('./api/spark_raw');  // starts up SSE
-
-//app.set('port', config.port);
 app.listen(config.port, '0.0.0.0', function () {
    console.log('Express at PORT : ' + config.port)
 });
