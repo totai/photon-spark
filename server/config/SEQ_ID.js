@@ -16,7 +16,6 @@
 // *** you don't have to add "SEQ" manually as part of the Schema, as this routine adds it with a "pre" function
 
    var mongoose = require('mongoose'),
-
       db = null,
       collection_name = 'io_counters',
       IO_Counter = null;
@@ -36,7 +35,6 @@
             console.log('SEQ_ID model - EXISTS')
          }
       } catch (e) {
-         //console.log('-> ' + e)
          if (e.name === 'MissingSchemaError') {
             console.log('SEQ_ID model - NEW');
             IO_Counter = mongoose.model(collection_name, IO_countersSchema);
@@ -48,8 +46,8 @@
             name: id_name
          },
          function (error, success) {
-            if (error) console.log("SEQ_ID : " + id_string + " : exists");
-            if (!error) console.log("SEQ_ID OK : " + success);
+            if (error) console.log("SEQ_ID [ " + id_string + " ] EXISTS");
+            if (!error) console.log("SEQ_ID CREATED [ " + id_string + " ] : " + success);
          });
       if (!mongoose.model(collection_name)) {
          return db.model(collection_name, IO_countersSchema);
@@ -57,24 +55,24 @@
    };
 
    exports.plugin = function (schema, options) {
-      var Counter, model_name, prefix;
-      if (!options.counterID) {
-         throw new Error('Missing required parameter: counterID');
-      }
-      // get "io_counters" _id (text)
-      model_name = options.counterID.toLowerCase();
-      // get "prefix" to put in front of base_32 number:  "C0" + "A1B2C3D4"
-      prefix = options.prefix;
-      Counter = db.model(collection_name);
-      schema.add({
-         Seq: {
-            type: String,
-            unique: true
+      if (!schema.path('SEQ')) {
+         var Counter, model_name, prefix;
+         if (!options.counterID) {
+            throw new Error('Missing required parameter: counterID');
          }
-      });
-      return schema.pre('save', function (next) {
-         self = this;
-         if (!self.Seq) {
+         // get "io_counters" _id (text)
+         model_name = options.counterID.toLowerCase();
+         // get "prefix" to put in front of base_32 number:  "C0" + "A1B2C3D4"
+         prefix = options.prefix;
+         Counter = db.model(collection_name);
+         schema.add({
+            SEQ: {
+               type: String,
+               unique: true
+            }
+         });
+         return schema.pre('save', function (next) {
+            var that = this;
             return Counter.collection.findAndModify({
                   _id: model_name
                },
@@ -84,18 +82,16 @@
                }, {
                   "new": true,
                   upsert: true
-               }, function (err, doc) {
-                  var count;
-                  count = doc.SEQ_num;
+               }, function (err, res) {
                   if (err) {
                      return next(err);
                   }
-                  self.Seq = prefix + count.toString(32).toUpperCase();
+                  var count = res.value.SEQ_num;
+                  that.SEQ = prefix + count.toString(32).toUpperCase();
+                  console.log('NEW SEQ: ' + prefix + count.toString(32).toUpperCase());
                   return next();
                });
-         } else {
-            return next();
-         }
-      });
+         });
+      }
    };
 }).call(this);
