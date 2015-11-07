@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SparkCore', [])
+angular.module('SparkCore.user', [])
 
   .factory('User', function ($resource) {
     return $resource('/api/users/:id/:controller', {
