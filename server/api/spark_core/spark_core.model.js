@@ -10,10 +10,10 @@ var Spark_coreSchema = new Schema({
    coreid: String,
    location: String,
    comment: String,
-   types: [],
+   types: []
 });
 
-UserSchema.plugin(timestamps, {
+Spark_coreSchema.plugin(timestamps, {
    createdAt: 'tsCreate',
    updatedAt: 'tsUpdate'
 });
