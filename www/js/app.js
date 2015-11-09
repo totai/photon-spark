@@ -2,6 +2,7 @@ angular.module('SparkCore', [
       'ionic',
       'SparkCore.services',
       'SparkCore.controllers',
+      'coreTypes.controller',
 //      'SparkCore.auth',
 //      'SparkCore.user',
       'tc.chartjs',
@@ -20,7 +21,7 @@ angular.module('SparkCore', [
             StatusBar.styleDefault();
          }
          $http.defaults.headers.common.Authorization = 'Bearer 67bef8e96e9a68644ed539609dac64451c90bec8';
-         var newToken = '67bef8e96e9a68644ed539609dac64451c90bec8'
+         //var newToken = '67bef8e96e9a68644ed539609dac64451c90bec8'
       });
    })
    .config(function ($sceProvider) {
@@ -36,7 +37,7 @@ angular.module('SparkCore', [
          })
          .state('forgotpassword', {
             url: "/forgot-password",
-            templateUrl: "forgot-password.html"
+            templateUrl: "templates/forgot-password.html"
          })
          .state('tabs', {
             url: "/tab",
@@ -53,18 +54,19 @@ angular.module('SparkCore', [
             }
          })
          .state('tabs.facts', {
-            url: "/facts",
+            url: "/google",
             views: {
                'home-tab': {
-                  templateUrl: "templates/facts.html"
+                  templateUrl: "templates/google.html"
                }
             }
          })
          .state('tabs.facts2', {
-            url: "/facts2",
+            url: "/coretypes",
             views: {
                'home-tab': {
-                  templateUrl: "facts2.html"
+                  templateUrl: "coreTypes/coreTypes.html",
+                  controller: 'CoreTypesCtrl'
                }
             }
          })
@@ -72,7 +74,8 @@ angular.module('SparkCore', [
             url: "/about",
             views: {
                'about-tab': {
-                  templateUrl: "about.html"
+                  templateUrl: "templates/about.html",
+                  controller: "AboutCtrl"
                }
             }
          })
@@ -93,4 +96,4 @@ angular.module('SparkCore', [
             }
          });
       $urlRouterProvider.otherwise("/sign-in");
-   })
+   });
