@@ -9,7 +9,8 @@ exports.index = function (req, res) {
       if (err) {
          return handleError(res, err);
       }
-      return res.json(200, spark_cores);
+      //return res.json(200, spark_cores);
+      return res.status(status).json(spark_cores)
    });
 };
 
