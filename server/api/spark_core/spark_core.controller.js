@@ -3,77 +3,77 @@
 var _ = require('lodash');
 var Spark_core = require('./spark_core.model.js');
 
-// Get list of domains
+// Get list of spark_cores
 exports.index = function (req, res) {
-   Domain.find(function (err, domains) {
-    if (err) {
-      return handleError(res, err);
-    }
-    return res.json(200, domains);
-  });
+   Spark_core.find(function (err, spark_cores) {
+      if (err) {
+         return handleError(res, err);
+      }
+      return res.json(200, spark_cores);
+   });
 };
 
-// Get a single domain
+// Get a single spark_core
 exports.show = function (req, res) {
-   Domain.find({name: req.params.domain}, function (err, domain) {
+   Spark_core.find({name: req.params.spark_core}, function (err, spark_core) {
     if (err) {
       return handleError(res, err);
     }
-    if (!domain) {
+    if (!spark_core) {
       return res.send(404);
     }
-    return res.json(domain);
+    return res.json(spark_core);
   });
 };
 
-// Creates a new domain in the DB.
+// Creates a new spark_core in the DB.
 exports.create = function (req, res) {
-   Domain.create(req.body, function (err, domain) {
+   Spark_core.create(req.body, function (err, spark_core) {
     if (err) {
       return handleError(res, err);
     }
-    var updated = _.merge(domain, req.body);
+    var updated = _.merge(spark_core, req.body);
     updated.save(function (err) {
       if (err) {
         return handleError(res, err);
       }
-      return res.json(200, domain);
+      return res.json(200, spark_core);
     });
   });
 };
 
-// Updates an existing domain in the DB.
+// Updates an existing spark_core in the DB.
 exports.update = function (req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-   Domain.findById(req.params.id, function (err, domain) {
+   Spark_core.findById(req.params.id, function (err, spark_core) {
     if (err) {
       return handleError(res, err);
     }
-    if (!domain) {
+    if (!spark_core) {
       return res.send(404);
     }
-    var updated = _.merge(domain, req.body);
+    var updated = _.merge(spark_core, req.body);
     updated.save(function (err) {
       if (err) {
         return handleError(res, err);
       }
-      return res.json(200, domain);
+      return res.json(200, spark_core);
     });
   });
 };
 
-// Deletes a domain from the DB.
+// Deletes a spark_core from the DB.
 exports.destroy = function (req, res) {
-   Domain.findById(req.params.id, function (err, domain) {
+   Spark_core.findById(req.params.id, function (err, spark_core) {
     if (err) {
       return handleError(res, err);
     }
-    if (!domain) {
+    if (!spark_core) {
       return res.send(404);
     }
-     domain.remove(function (err) {
+     spark_core.remove(function (err) {
       if (err) {
         return handleError(res, err);
       }
