@@ -3,49 +3,49 @@ angular.module('SparkCore.controllers', [])
    .controller('HomeTabCtrl', function ($scope, $http) {
 
       $scope.sendFinderEnroll = function () {
-         $scope.status = 'sendFinderEnroll'
+         $scope.status = 'sendFinderEnroll';
          $http.post("https://api.spark.io/v1/devices/Spark_I/enroll/")
             .success(function (data, status) {
-               $scope.status = status
-               $scope.data = data
+               $scope.status = status;
+               $scope.data = data;
                $scope.statusError = status
             })
             .error(function (data, status) {
                $scope.statusError = status + ' : ' + angular.toJson(data)
             })
-      }
+      };
 
       $scope.sendLedON = function () {
-         $scope.status = 'sendLedON'
+         $scope.status = 'sendLedON';
          $http.post("https://api.spark.io/v1/devices/Spark_I/led/")
             .success(function (data, status) {
-               $scope.status = status
-               $scope.data = data
+               $scope.status = status;
+               $scope.data = data;
                $scope.statusError = status
             })
             .error(function (data, status) {
                $scope.statusError = status + ' : ' + angular.toJson(data)
             })
-      }
+      };
 
       $scope.sendTemp_II = function () {
-         $scope.status = 'sendTemp_II'
+         $scope.status = 'sendTemp_II';
          $http.get("https://api.spark.io/v1/devices/Spark_II/resultX")
             .success(function (data, status) {
-               $scope.status = status
-               $scope.data = eval('(' + data.result + ')')
-               $scope.Spark_C = $scope.data.C_in
-               $scope.Spark_H = $scope.data.H_in
-               $scope.Spark_Out = $scope.data.C_out
+               $scope.status = status;
+               $scope.data = eval('(' + data.result + ')');
+               $scope.Spark_C = $scope.data.C_in;
+               $scope.Spark_H = $scope.data.H_in;
+               $scope.Spark_Out = $scope.data.C_out;
                $scope.statusError = status
             })
             .error(function (data, status) {
                $scope.statusError = status + ' : ' + angular.toJson(data)
             })
-      }
+      };
 
       $scope.sendTempErr = function () {
-         $scope.status = 'sendTempErr'
+         $scope.status = 'sendTempErr';
          $http.get("https://api.spark.io/v1/devices/Spark_II/errorX")
             .success(function (data, status) {
                $scope.statusError = status + ' : ' + data.result
@@ -53,26 +53,26 @@ angular.module('SparkCore.controllers', [])
             .error(function (data, status) {
                $scope.statusError = status + ' : ' + angular.toJson(data)
             })
-      }
+      };
 
       $scope.sendTemp_III = function () {
-         $scope.status = 'sendTemp_III'
+         $scope.status = 'sendTemp_III';
          $http.get("https://api.spark.io/v1/devices/Spark_III/zTemp")
             .success(function (data, status) {
-               $scope.status = status
-               $scope.data = eval('(' + data.result + ')')
-               $scope.Spark_C = $scope.data.C_in
-               $scope.Spark_H = $scope.data.H_in
-               $scope.Spark_Out = $scope.data.C_out
+               $scope.status = status;
+               $scope.data = eval('(' + data.result + ')');
+               $scope.Spark_C = $scope.data.C_in;
+               $scope.Spark_H = $scope.data.H_in;
+               $scope.Spark_Out = $scope.data.C_out;
                $scope.statusError = status
             })
             .error(function (data, status) {
                $scope.statusError = status + ' : ' + angular.toJson(data)
             })
-      }
+      };
 
       $scope.logout = function () {
-         Auth.logout()
+         Auth.logout();
          $state.go('login')
       }
    })
@@ -82,19 +82,19 @@ angular.module('SparkCore.controllers', [])
    })
 
    .controller('FriendDetailCtrl', function ($scope, $stateParams, Friends) {
-      $scope.friend = Friends.get($stateParams.friendId)
+      $scope.friend = Friends.get($stateParams.friendId);
 
-      $scope.iFrameSource = "/d/1mv7l0mbUdJ1qG-CPEMB7T2M4CQkqfJuHGKyD2602tB0/pubchart?oid=50771870&format=interactive"
-      $scope.iFrameSource = "https://docs.google.com/spreadsheets/d/1mv7l0mbUdJ1qG-CPEMB7T2M4CQkqfJuHGKyD2602tB0/pubchart?oid=50771870&format=interactive"
+      $scope.iFrameSource = "/d/1mv7l0mbUdJ1qG-CPEMB7T2M4CQkqfJuHGKyD2602tB0/pubchart?oid=50771870&format=interactive";
+      $scope.iFrameSource = "https://docs.google.com/spreadsheets/d/1mv7l0mbUdJ1qG-CPEMB7T2M4CQkqfJuHGKyD2602tB0/pubchart?oid=50771870&format=interactive";
 
       $scope.swapChartType = function () {
          if (this.chartConfig.options.chart.type === 'line') {
             this.chartConfig.options.chart.type = 'bar'
          } else {
-            this.chartConfig.options.chart.type = 'line'
+            this.chartConfig.options.chart.type = 'line';
             this.chartConfig.options.chart.zoomType = 'x'
          }
-      }
+      };
 
       $scope.chartConfig = {
          options: {
@@ -112,12 +112,12 @@ angular.module('SparkCore.controllers', [])
       }
    })
 
-   .controller('AccountCtrl', function ($scope) {
+   .controller('AboutCtrl', function ($scope) {
       $scope.myOptions = {
          // Chart.js options can go here.
       };
       $scope.myData = {
-         labels: ["January", "February", "March", "April", "May", "June", "July"],
+         labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
          datasets: [
             {
                label: "First dataset",
@@ -127,7 +127,7 @@ angular.module('SparkCore.controllers', [])
                pointStrokeColor: "#fff",
                pointHighlightFill: "#fff",
                pointHighlightStroke: "rgba(220,220,220,1)",
-               data: [65, 59, 80, 81, 56, 55, 40]
+               data: [65, 59, 80, 81, 56, 55, 40, 20]
             },
             {
                label: "Second dataset",
@@ -137,13 +137,13 @@ angular.module('SparkCore.controllers', [])
                pointStrokeColor: "#fff",
                pointHighlightFill: "#fff",
                pointHighlightStroke: "rgba(151,187,205,1)",
-               data: [28, 48, 40, 19, 86, 27, 90]
+               data: [28, 48, 40, 19, 86, 27, 90, 85]
             }
          ]
       };
    })
 
-   .controller('ConfigCtrl', function ($scope, $http) {
+   .controller('ConfigCtrl', function ($scope) {
       $scope.users = [
          {id: 1, fName: 'Hege', lName: "Pege"},
          {id: 2, fName: 'Kim', lName: "Pim"},
@@ -153,8 +153,8 @@ angular.module('SparkCore.controllers', [])
       ];
    })
 
-   .controller('SignInCtrl', function($scope, $state) {
-      $scope.signIn = function(user) {
+   .controller('SignInCtrl', function ($scope, $state) {
+      $scope.signIn = function (user) {
          console.log('Sign-In', user);
          $state.go('tabs.home');
       };
