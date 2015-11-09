@@ -4,8 +4,6 @@ var controller = require('./spark_core_type.controller.js'),
    express = require('express'),
    router = express.Router();
 
-var Spark_core_type = require('./spark_core_type.model.js');
-
 router.get('/', controller.index);
 router.get('/:core', controller.show);
 router.post('/', controller.create);
