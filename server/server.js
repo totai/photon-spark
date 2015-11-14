@@ -9,12 +9,12 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
-console.log('config -> ' + JSON.stringify(config));
+console.log('PHOTON config -> ' + JSON.stringify(config));
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
-console.log(config.mongo.uri);
+console.log('MONGO config -> '+config.mongo.uri);
 
 // set up SEQ_ID.js
 var SEQ_ID = require("./config/SEQ_ID");
